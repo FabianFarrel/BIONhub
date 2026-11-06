@@ -2,12 +2,12 @@
   "name": "bionhub-backend",
   "version": "1.0.0",
   "description": "BIONhub Entertainment Hub - Backend API (Node + Express + MongoDB + TypeScript)",
-  "main": "dist/server.js",
+  "main": "dist/src/server.js",
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "seed": "tsx src/seed.ts",
     "typecheck": "tsc --noEmit"
   },
@@ -38,6 +38,7 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.14.0",
+    "@vercel/node": "^30.0.0",
     "tsx": "^4.16.0",
     "typescript": "^5.5.0"
   }
