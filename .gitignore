@@ -1,0 +1,35 @@
+# ---- Dependencies ----
+node_modules/
+**/node_modules/
+
+# ---- Secrets / env (NEVER commit) ----
+.env
+**/.env
+.env.local
+**/.env.local
+.env.*.local
+
+# ---- IDE / tooling config (contains API keys, not needed in repo) ----
+.kiro/
+.stitch/
+.expo/
+**/.expo/
+
+# ---- Build output ----
+dist/
+**/dist/
+.next/
+**/.next/
+web/out/
+backend/dist/
+
+# ---- Logs & temp ----
+*.log
+**/*.log
+prog.txt
+screens.txt
+*.tmp
+
+# ---- OS ----
+.DS_Store
+Thumbs.db

@@ -1,0 +1,19 @@
+{
+  "name": "bionhub",
+  "version": "1.0.0",
+  "description": "BIONhub Entertainment Hub - monorepo (backend + web + mobile)",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n backend,web -c green,cyan \"npm:dev:backend\" \"npm:dev:web\"",
+    "dev:all": "concurrently -n backend,web,mobile -c green,cyan,magenta \"npm:dev:backend\" \"npm:dev:web\" \"npm:dev:mobile\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:web": "npm run dev --prefix web",
+    "dev:mobile": "npm start --prefix mobile",
+    "seed": "npm run seed --prefix backend",
+    "install:all": "npm install --prefix backend && npm install --prefix web && npm install --prefix mobile",
+    "build": "npm run build --prefix backend && npm run build --prefix web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
