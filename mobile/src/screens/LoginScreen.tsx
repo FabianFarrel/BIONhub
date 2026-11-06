@@ -15,6 +15,8 @@ import { useAuth } from "../context/AuthContext";
 import { useSettings } from "../context/SettingsContext";
 import GradientBackground from "../components/GradientBackground";
 import TopBar from "../components/TopBar";
+import LogoMark from "../components/LogoMark";
+import { IconMail, IconLock, IconStar, IconPlay } from "../components/Icons";
 import type { RootStackParamList } from "../types";
 import type { AxiosError } from "axios";
 
@@ -57,14 +59,19 @@ export default function LoginScreen({ navigation }: Props) {
         >
           <TopBar />
 
+          <View style={styles.brandRow}>
+            <LogoMark size={56} />
+          </View>
+
           <View
             style={[
               styles.badge,
               { backgroundColor: p.glass, borderColor: p.glassBorder },
             ]}
           >
+            <IconStar size={13} color={p.accent} />
             <Text style={[styles.badgeText, { color: p.accent }]}>
-              ★ {t.vipBadge}
+              {t.vipBadge}
             </Text>
           </View>
 
@@ -97,7 +104,9 @@ export default function LoginScreen({ navigation }: Props) {
                 { backgroundColor: p.bgElev, borderColor: p.glassBorder },
               ]}
             >
-              <Text style={[styles.inputIcon, { color: p.textFaint }]}>@</Text>
+              <View style={styles.iconBox}>
+                <IconMail size={18} color={p.textFaint} />
+              </View>
               <TextInput
                 style={[styles.input, { color: p.text }]}
                 value={email}
@@ -118,7 +127,9 @@ export default function LoginScreen({ navigation }: Props) {
                 { backgroundColor: p.bgElev, borderColor: p.glassBorder },
               ]}
             >
-              <Text style={[styles.inputIcon, { color: p.textFaint }]}>⚿</Text>
+              <View style={styles.iconBox}>
+                <IconLock size={18} color={p.textFaint} />
+              </View>
               <TextInput
                 style={[styles.input, { color: p.text }]}
                 value={password}
@@ -135,9 +146,12 @@ export default function LoginScreen({ navigation }: Props) {
               disabled={loading}
               activeOpacity={0.85}
             >
-              <Text style={styles.buttonText}>
-                ▶ {loading ? t.loggingIn : t.login}
-              </Text>
+              <View style={styles.btnInner}>
+                <IconPlay size={15} color="#fff" />
+                <Text style={styles.buttonText}>
+                  {loading ? t.loggingIn : t.login}
+                </Text>
+              </View>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate("Register")}>
@@ -166,16 +180,22 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingBottom: 40,
   },
+  brandRow: { alignItems: "center", marginTop: 18, marginBottom: 2 },
   badge: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
     alignSelf: "flex-start",
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 20,
     borderWidth: 1,
-    marginTop: 20,
+    marginTop: 18,
     marginLeft: 4,
   },
   badgeText: { fontSize: 11, fontWeight: "800", letterSpacing: 0.5 },
+  iconBox: { width: 18, marginRight: 8, alignItems: "center" },
+  btnInner: { flexDirection: "row", alignItems: "center", gap: 8 },
   title: { fontSize: 30, fontWeight: "800", marginTop: 16, marginLeft: 4 },
   subtitle: { fontSize: 14, marginBottom: 20, marginLeft: 4 },
   card: { borderRadius: 22, borderWidth: 1, padding: 20 },

@@ -1,6 +1,7 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useSettings } from '../context/SettingsContext';
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useSettings } from "../context/SettingsContext";
+import LogoMark from "./LogoMark";
 
 /**
  * Brand header with quick language + theme toggles.
@@ -13,9 +14,7 @@ export default function TopBar({ showBrand = true }: { showBrand?: boolean }) {
     <View style={styles.row}>
       {showBrand ? (
         <View style={styles.brandWrap}>
-          <View style={[styles.logo, { backgroundColor: p.primary }]}>
-            <Text style={styles.logoText}>B</Text>
-          </View>
+          <LogoMark size={30} />
           <Text style={[styles.brand, { color: p.text }]}>
             BION<Text style={{ color: p.primary }}>hub</Text>
           </Text>
@@ -27,17 +26,27 @@ export default function TopBar({ showBrand = true }: { showBrand?: boolean }) {
       <View style={styles.toggles}>
         <TouchableOpacity
           onPress={toggleLang}
-          style={[styles.pill, { backgroundColor: p.glass, borderColor: p.glassBorder }]}
+          style={[
+            styles.pill,
+            { backgroundColor: p.glass, borderColor: p.glassBorder },
+          ]}
           activeOpacity={0.7}
         >
-          <Text style={[styles.pillText, { color: p.text }]}>{lang.toUpperCase()}</Text>
+          <Text style={[styles.pillText, { color: p.text }]}>
+            {lang.toUpperCase()}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={toggleTheme}
-          style={[styles.pill, { backgroundColor: p.glass, borderColor: p.glassBorder }]}
+          style={[
+            styles.pill,
+            { backgroundColor: p.glass, borderColor: p.glassBorder },
+          ]}
           activeOpacity={0.7}
         >
-          <Text style={[styles.pillText, { color: p.text }]}>{mode === 'dark' ? '☾' : '☀'}</Text>
+          <Text style={[styles.pillText, { color: p.text }]}>
+            {mode === "dark" ? "☾" : "☀"}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -46,31 +55,23 @@ export default function TopBar({ showBrand = true }: { showBrand?: boolean }) {
 
 const styles = StyleSheet.create({
   row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingHorizontal: 18,
     paddingVertical: 10,
   },
-  brandWrap: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  logo: {
-    width: 30,
-    height: 30,
-    borderRadius: 9,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logoText: { color: '#fff', fontWeight: '900', fontSize: 17 },
-  brand: { fontSize: 19, fontWeight: '800' },
-  toggles: { flexDirection: 'row', gap: 8 },
+  brandWrap: { flexDirection: "row", alignItems: "center", gap: 8 },
+  brand: { fontSize: 19, fontWeight: "800" },
+  toggles: { flexDirection: "row", gap: 8 },
   pill: {
     minWidth: 40,
     height: 34,
     paddingHorizontal: 12,
     borderRadius: 18,
     borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
-  pillText: { fontWeight: '700', fontSize: 14 },
+  pillText: { fontWeight: "700", fontSize: 14 },
 });

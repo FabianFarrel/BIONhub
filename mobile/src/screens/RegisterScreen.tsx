@@ -15,6 +15,8 @@ import { useAuth } from "../context/AuthContext";
 import { useSettings } from "../context/SettingsContext";
 import GradientBackground from "../components/GradientBackground";
 import TopBar from "../components/TopBar";
+import LogoMark from "../components/LogoMark";
+import { IconUser, IconMail, IconLock, IconStar } from "../components/Icons";
 import type { RootStackParamList } from "../types";
 import type { AxiosError } from "axios";
 
@@ -62,14 +64,19 @@ export default function RegisterScreen({ navigation }: Props) {
         >
           <TopBar />
 
+          <View style={styles.brandRow}>
+            <LogoMark size={56} />
+          </View>
+
           <View
             style={[
               styles.badge,
               { backgroundColor: p.glass, borderColor: p.glassBorder },
             ]}
           >
+            <IconStar size={13} color={p.accent} />
             <Text style={[styles.badgeText, { color: p.accent }]}>
-              ★ {t.vipBadge}
+              {t.vipBadge}
             </Text>
           </View>
 
@@ -104,7 +111,9 @@ export default function RegisterScreen({ navigation }: Props) {
                 { backgroundColor: p.bgElev, borderColor: p.glassBorder },
               ]}
             >
-              <Text style={[styles.inputIcon, { color: p.textFaint }]}>☺</Text>
+              <View style={styles.iconBox}>
+                <IconUser size={18} color={p.textFaint} />
+              </View>
               <TextInput
                 style={[styles.input, { color: p.text }]}
                 value={name}
@@ -121,7 +130,9 @@ export default function RegisterScreen({ navigation }: Props) {
                 { backgroundColor: p.bgElev, borderColor: p.glassBorder },
               ]}
             >
-              <Text style={[styles.inputIcon, { color: p.textFaint }]}>@</Text>
+              <View style={styles.iconBox}>
+                <IconMail size={18} color={p.textFaint} />
+              </View>
               <TextInput
                 style={[styles.input, { color: p.text }]}
                 value={email}
@@ -142,7 +153,9 @@ export default function RegisterScreen({ navigation }: Props) {
                 { backgroundColor: p.bgElev, borderColor: p.glassBorder },
               ]}
             >
-              <Text style={[styles.inputIcon, { color: p.textFaint }]}>⚿</Text>
+              <View style={styles.iconBox}>
+                <IconLock size={18} color={p.textFaint} />
+              </View>
               <TextInput
                 style={[styles.input, { color: p.text }]}
                 value={password}
@@ -186,16 +199,21 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingBottom: 40,
   },
+  brandRow: { alignItems: "center", marginTop: 16, marginBottom: 2 },
   badge: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
     alignSelf: "flex-start",
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 20,
     borderWidth: 1,
-    marginTop: 16,
+    marginTop: 14,
     marginLeft: 4,
   },
   badgeText: { fontSize: 11, fontWeight: "800", letterSpacing: 0.5 },
+  iconBox: { width: 18, marginRight: 8, alignItems: "center" },
   title: { fontSize: 28, fontWeight: "800", marginTop: 14, marginLeft: 4 },
   subtitle: { fontSize: 14, marginBottom: 18, marginLeft: 4 },
   card: { borderRadius: 22, borderWidth: 1, padding: 20 },
