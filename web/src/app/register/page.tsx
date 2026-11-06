@@ -5,26 +5,36 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { useSettings } from "@/context/SettingsContext";
+import Logo from "@/components/Logo";
+import {
+  IconDevices,
+  IconFilm,
+  IconStar,
+  IconHeadphones,
+  IconUser,
+  IconMail,
+  IconLock,
+} from "@/components/Icons";
 import type { AxiosError } from "axios";
 
 const features = [
   {
-    ico: "📺",
-    en: ["Multi-Screen Sync", "HP, tablet, laptop & Smart TV"],
+    Ico: IconDevices,
+    en: ["Multi-Screen Sync", "Phone, tablet, laptop & Smart TV"],
     id: ["Sinkronisasi Layar", "HP, tablet, laptop & Smart TV"],
   },
   {
-    ico: "🎬",
+    Ico: IconFilm,
     en: ["Thousands of Titles", "Movies, series, and music"],
     id: ["Ribuan Tontonan", "Film, serial, dan musik"],
   },
   {
-    ico: "⭐",
+    Ico: IconStar,
     en: ["Personal Favorites", "Build your own watchlist"],
     id: ["Favorit Pribadi", "Bangun daftar tontonanmu"],
   },
   {
-    ico: "🔊",
+    Ico: IconHeadphones,
     en: ["Dolby & IMAX Sound", "Premiere-grade spatial audio"],
     id: ["Dolby & IMAX Sound", "Audio spasial kelas premiere"],
   },
@@ -84,6 +94,25 @@ export default function RegisterPage() {
 
       {/* Left hero */}
       <div className="auth-hero" style={{ position: "relative", zIndex: 1 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            marginBottom: 18,
+          }}
+        >
+          <Logo size={48} />
+          <span
+            style={{
+              fontFamily: "Syne, sans-serif",
+              fontWeight: 800,
+              fontSize: 24,
+            }}
+          >
+            BION<span style={{ color: "var(--primary)" }}>hub</span>
+          </span>
+        </div>
         <span className="vip-badge">
           <span className="vip-dot" /> {t.vipBadge}
         </span>
@@ -95,9 +124,12 @@ export default function RegisterPage() {
         <div className="feature-grid">
           {features.map((f, i) => {
             const [title, desc] = lang === "id" ? f.id : f.en;
+            const Ico = f.Ico;
             return (
               <div className="feature-card" key={i}>
-                <div className="feature-ico">{f.ico}</div>
+                <div className="feature-ico">
+                  <Ico size={22} />
+                </div>
                 <div>
                   <h4>{title}</h4>
                   <p>{desc}</p>
@@ -117,7 +149,9 @@ export default function RegisterPage() {
 
         <label>{t.name}</label>
         <div className="input-wrap">
-          <span className="ico">☺</span>
+          <span className="ico">
+            <IconUser size={18} />
+          </span>
           <input
             className="field"
             value={name}
@@ -129,7 +163,9 @@ export default function RegisterPage() {
 
         <label>{t.email}</label>
         <div className="input-wrap">
-          <span className="ico">@</span>
+          <span className="ico">
+            <IconMail size={18} />
+          </span>
           <input
             className="field"
             type="email"
@@ -142,7 +178,9 @@ export default function RegisterPage() {
 
         <label>{t.password}</label>
         <div className="input-wrap">
-          <span className="ico">⚿</span>
+          <span className="ico">
+            <IconLock size={18} />
+          </span>
           <input
             className="field"
             type="password"

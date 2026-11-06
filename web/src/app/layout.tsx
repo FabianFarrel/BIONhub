@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "BIONhub — Entertainment Hub",
   description:
     "Discover movies, TV series, and music. Rate, review, and save your favorites.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

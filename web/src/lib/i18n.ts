@@ -16,6 +16,7 @@ export interface Strings {
   tv: string;
   music: string;
   searchPlaceholder: string;
+  searchTitle: string;
   // home
   greeting: string;
   spotlight: string;
@@ -116,6 +117,7 @@ const en: Strings = {
   tv: "Series",
   music: "Music",
   searchPlaceholder: "Search titles, creators, soundtracks…",
+  searchTitle: "Search",
   greeting: "Welcome",
   spotlight: "Weekly Spotlight",
   watchNow: "Watch Trailer",
@@ -212,6 +214,7 @@ const id: Strings = {
   tv: "Serial",
   music: "Musik",
   searchPlaceholder: "Cari judul, kreator, soundtrack…",
+  searchTitle: "Cari",
   greeting: "Selamat Datang",
   spotlight: "Sorotan Pekan Ini",
   watchNow: "Tonton Trailer",

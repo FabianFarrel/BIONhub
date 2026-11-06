@@ -5,26 +5,35 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { useSettings } from "@/context/SettingsContext";
+import Logo from "@/components/Logo";
+import {
+  IconSync,
+  IconHeadphones,
+  IconStar,
+  IconLock,
+  IconMail,
+  IconPlay,
+} from "@/components/Icons";
 import type { AxiosError } from "axios";
 
 const features = [
   {
-    ico: "🔁",
+    Ico: IconSync,
     en: ["Synced Screens", "Resume on TV, tablet, phone"],
     id: ["Semua Layar Tersinkron", "Lanjut di TV, tablet, seluler"],
   },
   {
-    ico: "🎧",
+    Ico: IconHeadphones,
     en: ["Dolby Atmos & 4K", "Real cinema-grade experience"],
     id: ["Dolby Atmos & 4K", "Sensasi ruang bioskop asli"],
   },
   {
-    ico: "⭐",
+    Ico: IconStar,
     en: ["Rate & Review", "Share your thoughts freely"],
     id: ["Rating & Ulasan", "Bagikan pendapatmu bebas"],
   },
   {
-    ico: "🔒",
+    Ico: IconLock,
     en: ["Secure Account", "Encrypted authentication"],
     id: ["Akun Aman", "Autentikasi terenkripsi"],
   },
@@ -79,6 +88,25 @@ export default function LoginPage() {
 
       {/* Left hero */}
       <div className="auth-hero" style={{ position: "relative", zIndex: 1 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            marginBottom: 18,
+          }}
+        >
+          <Logo size={48} />
+          <span
+            style={{
+              fontFamily: "Syne, sans-serif",
+              fontWeight: 800,
+              fontSize: 24,
+            }}
+          >
+            BION<span style={{ color: "var(--primary)" }}>hub</span>
+          </span>
+        </div>
         <span className="vip-badge">
           <span className="vip-dot" /> {t.vipBadge}
         </span>
@@ -91,9 +119,12 @@ export default function LoginPage() {
         <div className="feature-grid">
           {features.map((f, i) => {
             const [title, desc] = lang === "id" ? f.id : f.en;
+            const Ico = f.Ico;
             return (
               <div className="feature-card" key={i}>
-                <div className="feature-ico">{f.ico}</div>
+                <div className="feature-ico">
+                  <Ico size={22} />
+                </div>
                 <div>
                   <h4>{title}</h4>
                   <p>{desc}</p>
@@ -113,7 +144,9 @@ export default function LoginPage() {
 
         <label>{t.email}</label>
         <div className="input-wrap">
-          <span className="ico">@</span>
+          <span className="ico">
+            <IconMail size={18} />
+          </span>
           <input
             className="field"
             type="email"
@@ -126,7 +159,9 @@ export default function LoginPage() {
 
         <label>{t.password}</label>
         <div className="input-wrap">
-          <span className="ico">⚿</span>
+          <span className="ico">
+            <IconLock size={18} />
+          </span>
           <input
             className="field"
             type="password"
@@ -142,7 +177,7 @@ export default function LoginPage() {
           style={{ marginTop: 22 }}
           disabled={submitting}
         >
-          ▶ {submitting ? t.loggingIn : t.loginCta}
+          <IconPlay size={16} /> {submitting ? t.loggingIn : t.loginCta}
         </button>
 
         <p className="auth-switch">

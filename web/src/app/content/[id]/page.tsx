@@ -128,8 +128,6 @@ export default function DetailPage() {
           <div className="breadcrumb">
             <Link href="/">{t.breadcrumbVault}</Link>
             <span>/</span>
-            <span className="b-gold">{t.breadcrumbPremiere}</span>
-            <span>/</span>
             <span>{item.genres?.[0]}</span>
           </div>
 

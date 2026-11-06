@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { useSettings } from "@/context/SettingsContext";
+import Logo from "./Logo";
+import SearchModal from "./SearchModal";
 import {
   IconHome,
   IconFilm,
@@ -27,14 +29,11 @@ export default function Navbar() {
   const { t, lang, mode, setLang, toggleTheme } = useSettings();
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const [scrolled, setScrolled] = useState(false);
   const [acctOpen, setAcctOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [searchText, setSearchText] = useState("");
-  const searchInputRef = useRef<HTMLInputElement | null>(null);
 
   // Transparent at top, solid after scroll.
   useEffect(() => {
@@ -44,36 +43,11 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Keep local field in sync with the URL (?q=).
-  useEffect(() => {
-    const q = searchParams.get("q") || "";
-    setSearchText(q);
-    if (q) setSearchOpen(true);
-  }, [searchParams]);
-
   // Close menus on navigation.
   useEffect(() => {
     setAcctOpen(false);
     setMoreOpen(false);
   }, [pathname]);
-
-  // Debounced push of the search query into the URL (fixes "refresh every keystroke").
-  useEffect(() => {
-    const current = searchParams.get("q") || "";
-    if (searchText === current) return;
-    const id = setTimeout(() => {
-      const trimmed = searchText.trim();
-      if (trimmed) router.push(`/?q=${encodeURIComponent(trimmed)}`);
-      else if (pathname === "/") router.push("/");
-    }, 450);
-    return () => clearTimeout(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchText]);
-
-  const openSearch = () => {
-    setSearchOpen(true);
-    setTimeout(() => searchInputRef.current?.focus(), 50);
-  };
 
   const handleLogout = () => {
     logout();
@@ -84,7 +58,7 @@ export default function Navbar() {
   return (
     <header className={`navbar-dyn ${scrolled ? "scrolled" : ""}`}>
       <Link href="/" className="brand">
-        <span className="brand-logo">▶</span>
+        <Logo size={40} />
         <span>
           <span className="brand-name">BIONhub</span>
           <br />
@@ -173,27 +147,14 @@ export default function Navbar() {
       </nav>
 
       <div className="nav-actions">
-        {/* Expanding search */}
-        <div className={`nav-search ${searchOpen ? "open" : ""}`}>
-          <button
-            className="ns-btn"
-            onClick={searchOpen ? undefined : openSearch}
-            aria-label="Search"
-          >
-            <IconSearch />
-          </button>
-          {searchOpen && (
-            <input
-              ref={searchInputRef}
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              onBlur={() => {
-                if (!searchText.trim()) setSearchOpen(false);
-              }}
-              placeholder={t.searchPlaceholder}
-            />
-          )}
-        </div>
+        {/* Search icon -> opens modal */}
+        <button
+          className="icon-btn"
+          onClick={() => setSearchOpen(true)}
+          aria-label="Search"
+        >
+          <IconSearch />
+        </button>
 
         <button className="icon-btn" onClick={toggleTheme} aria-label="Theme">
           {mode === "dark" ? <IconMoon /> : <IconSun />}
@@ -314,6 +275,8 @@ export default function Navbar() {
           )}
         </div>
       </div>
+
+      {searchOpen && <SearchModal onClose={() => setSearchOpen(false)} />}
     </header>
   );
 }

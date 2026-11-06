@@ -6,12 +6,12 @@ type P = { size?: number; className?: string; style?: React.CSSProperties };
 const base = (size: number): React.SVGProps<SVGSVGElement> => ({
   width: size,
   height: size,
-  viewBox: '0 0 24 24',
-  fill: 'none',
-  stroke: 'currentColor',
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
   strokeWidth: 1.8,
-  strokeLinecap: 'round' as const,
-  strokeLinejoin: 'round' as const,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
 });
 
 export const IconHome = ({ size = 18, className, style }: P) => (
@@ -112,7 +112,59 @@ export const IconSun = ({ size = 18, className, style }: P) => (
 );
 
 export const IconPlay = ({ size = 18, className, style }: P) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} style={style}>
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    style={style}
+  >
     <path d="M8 5v14l11-7z" />
+  </svg>
+);
+
+export const IconSync = ({ size = 18, className, style }: P) => (
+  <svg {...base(size)} className={className} style={style}>
+    <path d="M4 10a8 8 0 0 1 13.5-4L20 8" />
+    <path d="M20 4v4h-4" />
+    <path d="M20 14a8 8 0 0 1-13.5 4L4 16" />
+    <path d="M4 20v-4h4" />
+  </svg>
+);
+
+export const IconHeadphones = ({ size = 18, className, style }: P) => (
+  <svg {...base(size)} className={className} style={style}>
+    <path d="M4 14v-2a8 8 0 0 1 16 0v2" />
+    <rect x="3" y="14" width="4" height="6" rx="1.5" />
+    <rect x="17" y="14" width="4" height="6" rx="1.5" />
+  </svg>
+);
+
+export const IconStar = ({ size = 18, className, style }: P) => (
+  <svg {...base(size)} className={className} style={style}>
+    <path d="M12 3.5 14.6 9l6 .5-4.6 4 1.4 5.9L12 16.8 6.6 19.4 8 13.5 3.4 9.5l6-.5L12 3.5Z" />
+  </svg>
+);
+
+export const IconLock = ({ size = 18, className, style }: P) => (
+  <svg {...base(size)} className={className} style={style}>
+    <rect x="4.5" y="10.5" width="15" height="10" rx="2.5" />
+    <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5" />
+  </svg>
+);
+
+export const IconMail = ({ size = 18, className, style }: P) => (
+  <svg {...base(size)} className={className} style={style}>
+    <rect x="3" y="5" width="18" height="14" rx="2.5" />
+    <path d="m4 7 8 6 8-6" />
+  </svg>
+);
+
+export const IconDevices = ({ size = 18, className, style }: P) => (
+  <svg {...base(size)} className={className} style={style}>
+    <rect x="2.5" y="5" width="13" height="10" rx="1.6" />
+    <path d="M6 19h7" />
+    <rect x="17" y="9" width="5" height="11" rx="1.4" />
   </svg>
 );
